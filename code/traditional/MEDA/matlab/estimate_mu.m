@@ -1,4 +1,4 @@
-function [mu,adist_m,adist_c] = estimate_mu(Xs,Ys,Xt,Yt)
+function [mu,adist_m,adist_c] = estimate_mu(Xs,Ys,Xt,Yt,w)
     C = length(unique(Ys));
     list_adist_c = [];
     epsilon = 1e-3;
@@ -10,7 +10,7 @@ function [mu,adist_m,adist_c] = estimate_mu(Xs,Ys,Xt,Yt)
         adist_i = adist(Xsi,Xtj);
         list_adist_c = [list_adist_c;adist_i];
     end
-    adist_c = mean(list_adist_c);
+    adist_c = w*list_adist_c;
     
     adist_m = adist(Xs,Xt);
     mu = adist_c / (adist_c + adist_m);

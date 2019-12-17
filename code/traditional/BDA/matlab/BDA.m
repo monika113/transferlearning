@@ -43,6 +43,9 @@ function [acc,acc_ite,A] = BDA(X_src,Y_src,X_tar,Y_tar,options)
     if ~isfield(options,'T')              %% iteration number
         options.T = 10;
     end
+    if ~isfield(options,'w_method')
+        options.w_method = 'S';
+    end
     
     mu = options.mu;
     lambda = options.lambda;
